@@ -1,0 +1,9 @@
+This project is created in ecclipse EE in java and mysql language.
+There are 5 steps to run this project
+
+Steps:
+1 create java dynamic project.
+2 create Login_page1 as per code.
+3 creat Admin_page as per code.
+4 upload aaa.jpeg image in project.
+5 Run the java project.
