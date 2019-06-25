@@ -1,0 +1,163 @@
+package images;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import images.Admin_page;
+
+import java.awt.Color;
+import javax.swing.JButton;
+import java.awt.SystemColor;
+import java.awt.Button;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+import javax.swing.JTable;
+
+public class Login_1 extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textField;
+	private JPasswordField passwordField;
+	private Button button;
+    ActionListener a;
+    private JLabel lblNewLabel_2;
+    private JTable table;
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Login_1 frame = new Login_1();
+					//frame.setUndecorated(true);
+					frame.setVisible(true);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	
+	/**
+	 * Create the frame.
+	 */
+	public Login_1() {
+		setBackground(new Color(218, 112, 214));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		/*this.setAlwaysOnTop(true);*/
+		this.setResizable(false);
+		setSize(1366, 768);
+		setBounds(-3, 0, 1374, 772);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(210, 180, 140));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		 button = new Button("Login");
+	
+		button.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				if(e.getSource()==button)
+				  {
+					String n1=textField.getText();
+					String n2=passwordField.getText();
+				if(n1.equals("admin") && n2.equals("admin"))
+					{	
+					  
+					  Admin_page.main(null);
+					  setVisible(false);
+					 
+					  
+				    }
+				else
+				 {	
+				  JOptionPane.showMessageDialog(null, "INCORRECT USERNAME OR PASSWORD");
+				    JLabel lblN = new JLabel("");
+					lblN.setFont(new Font("Tahoma", Font.BOLD, 13));
+					lblN.setForeground(Color.RED);
+					lblN.setBounds(1165, 398, 193, 14);
+					contentPane.add(lblN);
+					lblN.setText("Please Enter Valid Data");  	
+				  }
+				}  
+				}
+		});
+		button.setForeground(Color.WHITE);
+		button.setFont(new Font("Dialog", Font.BOLD, 15));
+		button.setBackground(new Color(241,57,83));
+		button.setBounds(1089, 439, 171, 42);
+		contentPane.add(button);
+		
+		textField = new JTextField();
+		textField.setBounds(1002, 244, 318, 42);
+		contentPane.add(textField);
+		textField.setColumns(10);
+	
+		JLabel lblNewLabel = new JLabel("USERNAME");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel.setBounds(1002, 208, 112, 25);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("PASSWORD");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_1.setBounds(1002, 325, 112, 14);
+		contentPane.add(lblNewLabel_1);
+		
+		passwordField = new JPasswordField();
+		passwordField.setFont(new Font("Tahoma", Font.BOLD, 13));
+		passwordField.setBounds(1002, 356, 318, 42);
+		contentPane.add(passwordField);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(10, 11, 965, 709);
+		contentPane.add(panel);
+		
+		lblNewLabel_2 = new JLabel("New label");
+		lblNewLabel_2.setIcon(new ImageIcon(Login_1.class.getResource("/images/aaa.jpg")));
+		panel.add(lblNewLabel_2);
+		
+		table = new JTable();
+		panel.add(table);
+		
+		JLabel lblN = new JLabel("");
+		lblN.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblN.setForeground(Color.RED);
+		lblN.setBounds(1165, 398, 193, 14);
+		contentPane.add(lblN);
+		
+		JLabel lblTP = new JLabel("T & P Cell");
+		lblTP.setForeground(new Color(70, 130, 180));
+		lblTP.setFont(new Font("Tahoma", Font.BOLD, 23));
+		lblTP.setBounds(1114, 47, 271, 42);
+		contentPane.add(lblTP);
+		
+		JLabel lblAmrutvahiniCollegeOf = new JLabel("Amrutvahini College OF Engineering ");
+		lblAmrutvahiniCollegeOf.setForeground(new Color(70, 130, 180));
+		lblAmrutvahiniCollegeOf.setFont(new Font("Tahoma", Font.BOLD, 19));
+		lblAmrutvahiniCollegeOf.setBounds(1002, 100, 356, 49);
+		contentPane.add(lblAmrutvahiniCollegeOf);
+		
+		JLabel lblSangamner = new JLabel("Sangamner, 422608");
+		lblSangamner.setForeground(new Color(70, 130, 180));
+		lblSangamner.setFont(new Font("Tahoma", Font.BOLD, 17));
+		lblSangamner.setBounds(1094, 148, 211, 47);
+		contentPane.add(lblSangamner);
+		
+	}
+}
