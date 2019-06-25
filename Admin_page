@@ -1,0 +1,862 @@
+package images;
+
+import java.awt.BorderLayout;
+
+
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import com.mysql.jdbc.PreparedStatement;
+
+import javax.swing.JButton;
+import javax.swing.JEditorPane;
+import javax.swing.border.BevelBorder;
+import javax.swing.JComboBox;
+import javax.swing.ImageIcon;
+import javax.swing.BoxLayout;
+import java.awt.GridLayout;
+import java.awt.CardLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+
+public class Admin_page extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_7;
+	private JTextField textField_8;
+	private JTextField textField_9;
+	private JTextField textField_10;
+	private JTextField textField_11;
+	private JTextField textField_12;
+	private JTextField textField_13;
+	private JTable table;
+	private JTextField textField_14;
+	private JTextField textField_15;
+	private DefaultTableModel model;
+	private Button button_7;
+	private Button button;
+	private Button button_2;
+	private Button button_5;
+	private Button button_4;
+	private Button button_1;
+	ActionListener e;
+	private JTextField textField_6;
+	private Color RED;
+	private JTextField textField_16;
+	private JTextField textField_17;
+	private JTextField textField_18;
+	private JTextField textField_19;
+	private JTextField textField_20;
+	private JTextField textField_21;
+	private JTextField textField_22;
+	private JTextField textField_23;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Admin_page frame = new Admin_page();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Admin_page() {
+		setForeground(Color.BLACK);
+		setBackground(Color.PINK);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		/*this.setAlwaysOnTop(true);*/
+		this.setResizable(false);
+		setSize(1366, 768);
+		setBounds(-3, 0, 1374, 772);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(10, 32, 1334, 762);
+		contentPane.add(tabbedPane);
+		
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(250, 235, 215));
+		tabbedPane.addTab("Add Biodata", null, panel, null);
+		panel.setLayout(null);
+		JLabel lblTitle_1 = new JLabel("STUDENT INFORMATION");
+		lblTitle_1.setVerticalAlignment(SwingConstants.TOP);
+		lblTitle_1.setBounds(433, 11, 391, 40);
+		lblTitle_1.setFont(new Font("Tahoma", Font.BOLD, 30));
+		panel.add(lblTitle_1);
+		
+		
+		JLabel lbl_time = new JLabel("");
+		lbl_time.setForeground(Color.GREEN);
+		lbl_time.setBounds(1200, 21, 400, 54);
+		
+		
+		Timer timer = new Timer("Display Timer");
+		TimerTask task = new TimerTask() {
+		    @Override
+		    public void run() {
+		        try {
+		            SwingUtilities.invokeAndWait(new Runnable() {
+
+		                @Override
+		                public void run() {
+		                    DateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
+		                    Calendar cali = Calendar.getInstance();
+		                    cali.getTime();
+		                    String time = timeFormat.format(cali.getTimeInMillis());
+		                    lbl_time.setText(time);
+
+		                }
+		            });
+		        } catch (Exception e) {
+		            // TODO Auto-generated catch block
+		            e.printStackTrace();
+		        }
+
+		    }
+		};
+		timer.scheduleAtFixedRate(task, 1000, 1000);
+		panel.add(lbl_time);
+
+		
+		
+		JLabel lblBookName = new JLabel("Gender :");
+		lblBookName.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblBookName.setBounds(77, 230, 125, 14);
+		panel.add(lblBookName);
+		
+		textField = new JTextField();
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		textField.setBounds(225, 224, 293, 29);
+		panel.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("Age :");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel.setBounds(77, 288, 112, 23);
+		panel.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Aadhar No. :");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_1.setBounds(76, 345, 100, 29);
+		panel.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Mobile No. :");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_2.setBounds(76, 412, 86, 23);
+		panel.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("CITY :");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_3.setBounds(77, 513, 65, 23);
+		panel.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("DISTRICT :");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_4.setBounds(77, 572, 85, 23);
+		panel.add(lblNewLabel_4);
+		
+		textField_1 = new JTextField();
+		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		textField_1.setBounds(225, 282, 293, 29);
+		panel.add(textField_1);
+		textField_1.setColumns(10);
+		
+		textField_2 = new JTextField();
+		textField_2.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				String n6=textField_2.getText();
+				if(n6.length()>10 && n6.length()<10)
+				{
+					JOptionPane.showMessageDialog(null, "error");
+				}
+				
+			}
+		});
+		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		textField_2.setBounds(225, 406, 293, 29);
+		panel.add(textField_2);
+		textField_2.setColumns(10);
+		
+		textField_3 = new JTextField();
+		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		textField_3.setBounds(225, 511, 293, 29);
+		panel.add(textField_3);
+		textField_3.setColumns(10);
+		
+		textField_4 = new JTextField();
+		textField_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		textField_4.setBounds(225, 345, 293, 29);
+		panel.add(textField_4);
+		textField_4.setColumns(10);
+		
+		textField_5 = new JTextField();
+		textField_5.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		textField_5.setBounds(225, 566, 293, 29);
+		panel.add(textField_5);
+		textField_5.setColumns(10);
+		
+		 button = new Button("Add Data");
+		 button.addActionListener(new ActionListener() {
+			 	public void actionPerformed(ActionEvent e) 
+			 	{ 
+			 		
+			 		String n1=textField_7.getText();
+			 	  String n2=textField_16.getText();
+			 	
+			 	  String n3=textField.getText();
+			 	  String n4=textField_1.getText();
+			 	  String n5=textField_4.getText();
+			 	  String n6=textField_2.getText();
+			 	 
+			 	  String n7=textField_17.getText();
+			 	 String n8=textField_18.getText();
+			 	String n9=textField_19.getText();
+			 	String n10=textField_20.getText();
+			 	String n11=textField_21.getText();
+			 	String n12=textField_22.getText();
+			 	String n13=textField_3.getText();
+			 	String n14=textField_23.getText();
+			 	String n15=textField_5.getText();
+			 	
+			 	   if(e.getSource()==button)
+			 	   {
+			 		   try
+			 		   {
+			 		     Class.forName("com.mysql.jdbc.Driver");
+			 		     Connection com= DriverManager.getConnection("jdbc:mysql://localhost:3306/stud_bio","root", "root");
+			 		     Statement stmt=com.createStatement();
+			 		     stmt.executeUpdate("insert into stud_info values('"+n1+"','"+n2+"','"+n3+"','"+n4+"','"+n5+"','"+n6+"','"+n7+"','"+n8+"','"+n9+"','"+n10+"','"+n11+"','"+n12+"','"+n13+"','"+n14+"','"+n15+"')");
+			 		    if(n6.length()>10 && n6.length()<10)
+						{
+							JOptionPane.showMessageDialog(null, "error");
+						}
+			 		     JOptionPane.showMessageDialog(null, "Student Details added Successfully");
+				 		textField_7.setText("");
+				 		textField_16.setText("");
+				 		textField.setText("");
+				 		textField_1.setText("");
+				 		textField_4.setText("");
+				 		textField_2.setText("");
+				 	
+				 		textField_17.setText("");
+				 		textField_18.setText("");
+				 		textField_19.setText("");
+				 		textField_20.setText("");
+				 		textField_21.setText("");
+				 		textField_22.setText("");
+				 		textField_3.setText("");
+				 		textField_23.setText("");
+				 		textField_5.setText("");
+			 		     com.close();
+			 		    }catch(Exception e1)
+			 		    {
+			 		        e1.printStackTrace();
+			 		        
+			 		    
+			 		    }
+			 	   }  
+			 		
+			 	
+			 	}
+			 });
+			
+		 
+		 
+		 button.setForeground(SystemColor.text);
+		 button.setBackground(new Color(153, 204, 255));
+		 button.setFont(new Font("Dialog", Font.BOLD, 17));
+		 button.setBounds(889, 572, 146, 40);
+		 panel.add(button);
+		 
+		 button_1 = new Button("Reset");
+		 button_1.addActionListener(new ActionListener() {
+		 	public void actionPerformed(ActionEvent arg0) {
+		 		textField_7.setText("");
+		 		textField_16.setText("");
+		 		textField.setText("");
+		 		textField_1.setText("");
+		 		textField_4.setText("");
+		 		textField_2.setText("");
+		 		textField_17.setText("");
+		 		textField_18.setText("");
+		 		textField_19.setText("");
+		 		textField_20.setText("");
+		 		textField_21.setText("");
+		 		textField_22.setText("");
+		 		textField_3.setText("");
+		 		textField_23.setText("");
+		 		textField_5.setText("");
+		 		
+		 	}
+		 });
+		 button_1.setBackground(new Color(153, 204, 255));
+		 button_1.setFont(new Font("Dialog", Font.BOLD, 14));
+		 button_1.setForeground(SystemColor.text);
+		 button_1.setBounds(1055, 572, 146, 40);
+		 panel.add(button_1);
+		 
+		 textField_7 = new JTextField();
+		 textField_7.setBounds(225, 105, 293, 29);
+		 panel.add(textField_7);
+		 textField_7.setColumns(10);
+		 
+		 JLabel lblBookId = new JLabel("ERP No. :");
+		 lblBookId.setFont(new Font("Tahoma", Font.BOLD, 14));
+		 lblBookId.setBounds(77, 112, 85, 22);
+		 panel.add(lblBookId);
+		 
+		 textField_16 = new JTextField();
+		 textField_16.setBounds(225, 167, 293, 29);
+		 panel.add(textField_16);
+		 textField_16.setColumns(10);
+		 
+		 JLabel lblStudentName = new JLabel("Student Name :");
+		 lblStudentName.setFont(new Font("Tahoma", Font.BOLD, 14));
+		 lblStudentName.setBounds(77, 174, 112, 22);
+		 panel.add(lblStudentName);
+		 
+		 JLabel lblStudentBiodata = new JLabel("STUDENT BIODATA");
+		 lblStudentBiodata.setFont(new Font("Tahoma", Font.BOLD, 18));
+		 lblStudentBiodata.setBounds(151, 55, 294, 33);
+		 panel.add(lblStudentBiodata);
+		 
+		 JLabel lblEducationalInformation = new JLabel("EDUCATIONAL INFORMATION");
+		 lblEducationalInformation.setFont(new Font("Tahoma", Font.BOLD, 18));
+		 lblEducationalInformation.setBounds(906, 55, 284, 29);
+		 panel.add(lblEducationalInformation);
+		 
+		 JLabel lblSscYear = new JLabel("SSC Year :");
+		 lblSscYear.setFont(new Font("Tahoma", Font.BOLD, 14));
+		 lblSscYear.setBounds(817, 112, 91, 22);
+		 panel.add(lblSscYear);
+		 
+		 textField_17 = new JTextField();
+		 textField_17.setBounds(978, 109, 223, 29);
+		 panel.add(textField_17);
+		 textField_17.setColumns(10);
+		 
+		 JLabel lblSscPercentage = new JLabel("SSC Percentage :");
+		 lblSscPercentage.setFont(new Font("Tahoma", Font.BOLD, 14));
+		 lblSscPercentage.setBounds(817, 174, 136, 22);
+		 panel.add(lblSscPercentage);
+		 
+		 textField_18 = new JTextField();
+		 textField_18.setBounds(978, 171, 223, 29);
+		 panel.add(textField_18);
+		 textField_18.setColumns(10);
+		 
+		 JLabel lblHscYear = new JLabel("HSC Year :");
+		 lblHscYear.setFont(new Font("Tahoma", Font.BOLD, 14));
+		 lblHscYear.setBounds(817, 232, 85, 21);
+		 panel.add(lblHscYear);
+		 
+		 textField_19 = new JTextField();
+		 textField_19.setBounds(978, 229, 223, 29);
+		 panel.add(textField_19);
+		 textField_19.setColumns(10);
+		 
+		 JLabel lblHscPercentage = new JLabel("HSC Percentage :");
+		 lblHscPercentage.setFont(new Font("Tahoma", Font.BOLD, 14));
+		 lblHscPercentage.setBounds(817, 297, 121, 23);
+		 panel.add(lblHscPercentage);
+		 
+		 textField_20 = new JTextField();
+		 textField_20.setBounds(978, 291, 223, 29);
+		 panel.add(textField_20);
+		 textField_20.setColumns(10);
+		 
+		 JLabel lblBePassingYear = new JLabel("B.E Passing Year :");
+		 lblBePassingYear.setFont(new Font("Tahoma", Font.BOLD, 14));
+		 lblBePassingYear.setBounds(817, 358, 136, 23);
+		 panel.add(lblBePassingYear);
+		 
+		 textField_21 = new JTextField();
+		 textField_21.setBounds(978, 351, 223, 29);
+		 panel.add(textField_21);
+		 textField_21.setColumns(10);
+		 
+		 JLabel lblBeAggregation = new JLabel("B.E Aggregation :");
+		 lblBeAggregation.setFont(new Font("Tahoma", Font.BOLD, 14));
+		 lblBeAggregation.setBounds(817, 418, 136, 29);
+		 panel.add(lblBeAggregation);
+		 
+		 textField_22 = new JTextField();
+		 textField_22.setBounds(978, 415, 223, 29);
+		 panel.add(textField_22);
+		 textField_22.setColumns(10);
+		 
+		 JLabel lblAddress = new JLabel("ADDRESS :");
+		 lblAddress.setForeground(Color.RED);
+		 lblAddress.setFont(new Font("Tahoma", Font.BOLD, 18));
+		 lblAddress.setBounds(77, 459, 164, 29);
+		 panel.add(lblAddress);
+		 
+		 JLabel lblPinNo = new JLabel("PIN NO .:");
+		 lblPinNo.setFont(new Font("Tahoma", Font.BOLD, 14));
+		 lblPinNo.setBounds(817, 517, 112, 23);
+		 panel.add(lblPinNo);
+		 
+		 textField_23 = new JTextField();
+		 textField_23.setBounds(978, 516, 223, 29);
+		 panel.add(textField_23);
+		 textField_23.setColumns(10);
+		 
+		 
+		 
+		
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(250, 235, 215));
+		panel_2.setForeground(Color.BLACK);
+		tabbedPane.addTab("Update", null, panel_2, null);
+		panel_2.setLayout(null);
+		
+		JLabel lblBookName_1 = new JLabel("ERP NO  :");
+		lblBookName_1.setBounds(87, 129, 92, 41);
+		lblBookName_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		panel_2.add(lblBookName_1);
+		
+		JLabel lblUpdateBookDetail = new JLabel("Update Student Details");
+		lblUpdateBookDetail.setBounds(331, 34, 340, 41);
+		lblUpdateBookDetail.setFont(new Font("Tahoma", Font.BOLD, 28));
+		panel_2.add(lblUpdateBookDetail);
+		
+		JLabel lblNewLabel_5 = new JLabel("Student Name :");
+		lblNewLabel_5.setBounds(87, 181, 112, 35);
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 14));
+		panel_2.add(lblNewLabel_5);
+		
+		textField_8 = new JTextField();
+		textField_8.setBounds(244, 186, 387, 29);
+		textField_8.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		panel_2.add(textField_8);
+		textField_8.setColumns(10);
+		
+		JLabel lblNewLabel_6 = new JLabel("Aadhar No :");
+		lblNewLabel_6.setBounds(87, 244, 112, 29);
+		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 14));
+		panel_2.add(lblNewLabel_6);
+		
+		textField_9 = new JTextField();
+		textField_9.setBounds(244, 245, 386, 29);
+		textField_9.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		panel_2.add(textField_9);
+		textField_9.setColumns(10);
+		
+		JLabel lblPublisher = new JLabel("Mobile No :");
+		lblPublisher.setBounds(87, 305, 92, 24);
+		lblPublisher.setFont(new Font("Tahoma", Font.BOLD, 14));
+		panel_2.add(lblPublisher);
+		
+		textField_10 = new JTextField();
+		textField_10.setBounds(244, 300, 386, 29);
+		textField_10.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		panel_2.add(textField_10);
+		textField_10.setColumns(10);
+		
+		JLabel lblEdiction = new JLabel("SSC Percentage  :");
+		lblEdiction.setBounds(87, 357, 127, 24);
+		lblEdiction.setFont(new Font("Tahoma", Font.BOLD, 14));
+		panel_2.add(lblEdiction);
+		
+		textField_11 = new JTextField();
+		textField_11.setBounds(244, 352, 386, 29);
+		textField_11.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		panel_2.add(textField_11);
+		textField_11.setColumns(10);
+		
+		JLabel lblNewLabel_7 = new JLabel("HSC Percentage :");
+		lblNewLabel_7.setBounds(87, 411, 127, 24);
+		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 14));
+		panel_2.add(lblNewLabel_7);
+		
+		textField_12 = new JTextField();
+		textField_12.setBounds(244, 406, 386, 29);
+		textField_12.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		panel_2.add(textField_12);
+		textField_12.setColumns(10);
+		
+		JLabel lblPrice = new JLabel("B.E Aggregate :");
+		lblPrice.setBounds(87, 466, 127, 24);
+		lblPrice.setFont(new Font("Tahoma", Font.BOLD, 14));
+		panel_2.add(lblPrice);
+		
+		textField_13 = new JTextField();
+		textField_13.setBounds(244, 461, 386, 29);
+		textField_13.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		panel_2.add(textField_13);
+		textField_13.setColumns(10);
+		
+		button_2 = new Button("UPDATE");
+		button_2.setBounds(244, 528, 178, 41);
+		button_2.setFont(new Font("Dialog", Font.BOLD, 14));
+		button_2.setBackground(new Color(153, 204, 255));
+		button_2.setForeground(Color.WHITE);
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					Class.forName("com.mysql.jdbc.Driver");
+					Connection com= DriverManager.getConnection("jdbc:mysql://localhost:3306/stud_bio","root", "root");
+		 		     java.sql.PreparedStatement pst = null;
+		 		
+		 		     
+		 		    String id = textField_6.getText();
+		 		   
+					String sql = "update stud_info set stud_name = ?, aadhar = ?, mobile = ?, ssc_per = ?, hsc_per = ?, be_per = ? where erp = ?"; 
+					 pst = com.prepareStatement(sql);
+					 pst.setString(1, textField_8.getText());
+					 pst.setString(2, textField_9.getText());
+					 pst.setString(3, textField_10.getText());
+					 pst.setString(4, textField_11.getText());
+					 pst.setString(5, textField_12.getText());
+					 pst.setString(6, textField_13.getText());
+					 pst.setString(7, id);
+					 pst.execute();
+					 
+			 		    JOptionPane.showMessageDialog(null, "Updated Successfully");
+			 		    textField_6.setText(" ");
+			 		   textField_8.setText(" ");
+			 		  textField_9.setText(" ");
+			 		 textField_10.setText(" ");
+			 		textField_11.setText(" ");
+			 		textField_12.setText(" ");
+			 		textField_13.setText(" ");
+			 		    
+			 		    
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+	 		     
+			}	
+		});
+		panel_2.add(button_2);
+		
+		Button button_3 = new Button("DELETE");
+		button_3.setBounds(452, 528, 178, 41);
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try {
+					Class.forName("com.mysql.jdbc.Driver");
+					Connection com= DriverManager.getConnection("jdbc:mysql://localhost:3306/stud_bio","root", "root");
+		 		     java.sql.PreparedStatement pst = null;
+		 		     
+		 		     
+		 		    String erp = textField_6.getText();
+		 		   
+					String sql = "delete from stud_info where erp = ?"; 
+					 pst = com.prepareStatement(sql);
+					 pst.setString(1, erp);
+					 pst.execute();
+					 
+			 		    JOptionPane.showMessageDialog(null, "Deleted Successfully");
+			 		    textField_6.setText(" ");
+				 		   textField_8.setText(" ");
+				 		  textField_9.setText(" ");
+				 		 textField_10.setText(" ");
+				 		textField_11.setText(" ");
+				 		textField_12.setText(" ");
+				 		textField_13.setText(" ");
+				 		    
+			 		    
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+			}
+		});
+		button_3.setBackground(new Color(153, 204, 255));
+		button_3.setForeground(Color.WHITE);
+		button_3.setFont(new Font("Dialog", Font.BOLD, 14));
+		panel_2.add(button_3);
+		
+		button_7 = new Button("Search");
+		button_7.setBounds(545, 129, 86, 41);
+		button_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				String erp = textField_6.getText();
+				
+				try
+				{
+					
+					Class.forName("com.mysql.jdbc.Driver");
+		 		     Connection com= DriverManager.getConnection("jdbc:mysql://localhost:3306/stud_bio","root", "root");
+		 		     java.sql.PreparedStatement pst = null;
+		 		     ResultSet rs = null;
+		 		     
+		 		    String search="select * from stud_info where erp ='"+erp+"'";
+		 		    pst = com.prepareStatement(search);
+		 		    rs = pst.executeQuery();
+		 		    while(rs.next())
+		 		    {
+		 		    	textField_8.setText(rs.getString("stud_name"));
+		 		    	textField_9.setText(rs.getString("aadhar"));
+		 		    	textField_10.setText(rs.getString("mobile"));
+		 		    	textField_11.setText(rs.getString("ssc_per"));
+		 		    	textField_12.setText(rs.getString("hsc_per"));
+		 		    	textField_13.setText(rs.getString("be_per"));
+		 		    }
+		 		    
+		 		    
+				}catch(Exception e)
+				{
+					
+				}
+			}
+		});
+		panel_2.add(button_7);
+		panel_2.add(button_7);
+		
+		textField_6 = new JTextField();
+		textField_6.setBounds(244, 136, 279, 29);
+		textField_6.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		textField_6.setColumns(10);
+		panel_2.add(textField_6);
+		
+		JLabel lbl_time1 = new JLabel("");
+		lbl_time1.setForeground(Color.GREEN);
+		lbl_time1.setBounds(1200, 21, 400, 54);
+		
+		
+		Timer timer1 = new Timer("Display Timer");
+		TimerTask task1 = new TimerTask() {
+		    @Override
+		    public void run() {
+		        try {
+		            SwingUtilities.invokeAndWait(new Runnable() {
+
+		                @Override
+		                public void run() {
+		                    DateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
+		                    Calendar cali = Calendar.getInstance();
+		                    cali.getTime();
+		                    String time = timeFormat.format(cali.getTimeInMillis());
+		                    lbl_time1.setText(time);
+
+		                }
+		            });
+		        } catch (Exception e) {
+		            // TODO Auto-generated catch block
+		            e.printStackTrace();
+		        }
+
+		    }
+		};
+		timer.scheduleAtFixedRate(task1, 1000, 1000);
+		panel_2.add(lbl_time1);
+		
+Object column[]= {" ERP "," Stud_name" ," Gender" ," Age","Aadhar No" , "Mobile No "," SSC Year","SSC Per.","HSC Year","HSC Per.","B.E Year","B.E_per","City","Pin","Dist"};
+		
+		
+	   model =new DefaultTableModel();
+	   model.setColumnIdentifiers(column);
+	   table=new JTable();
+	   
+	   table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+	   table.setModel(model);	
+		
+	 
+	    JScrollPane scroll = new JScrollPane(table);
+		JPanel panel_1 = new JPanel();
+		scroll.setBounds(33, 293, 1286,328);
+		panel_1.add(scroll);
+		panel_1.setBackground(new Color(250, 235, 215));
+		tabbedPane.addTab("Search Data", null, panel_1, null);
+		panel_1.setLayout(null);
+		
+		table.setBounds(72, 281, 1141,328);
+		   button_4 = new Button("Search\r\n");
+			button_4.setBackground(new Color(153, 204, 255));
+			button_4.setForeground(Color.WHITE);
+			button_4.setFont(new Font("Dialog", Font.BOLD, 14));
+			button_4.setBounds(490, 214, 160, 39);
+			panel_1.add(button_4);
+			
+			JLabel lbl_time2 = new JLabel("");
+			lbl_time2.setForeground(Color.GREEN);
+			lbl_time2.setBounds(1200, 21, 400, 54);
+			
+			
+			Timer timer2 = new Timer("Display Timer");
+			TimerTask task2 = new TimerTask() {
+			    @Override
+			    public void run() {
+			        try {
+			            SwingUtilities.invokeAndWait(new Runnable() {
+
+			                @Override
+			                public void run() {
+			                    DateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
+			                    Calendar cali = Calendar.getInstance();
+			                    cali.getTime();
+			                    String time = timeFormat.format(cali.getTimeInMillis());
+			                    lbl_time2.setText(time);
+
+			                }
+			            });
+			        } catch (Exception e) {
+			            // TODO Auto-generated catch block
+			            e.printStackTrace();
+			        }
+
+			    }
+			};
+			timer2.scheduleAtFixedRate(task2, 1000, 1000);
+			panel_1.add(lbl_time2);
+
+			
+		
+		try {
+			
+			
+			 
+			 
+			 button_4.addActionListener(new ActionListener() {
+				 public void actionPerformed(ActionEvent e) 
+				 	{  
+					   String n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12,n13,n14,n15;
+					   int n1;
+					  
+				 	  String bn= textField_14.getText();
+				 	  String an=textField_15.getText();
+				 	   if(e.getSource()==button_4)
+				 	   {
+				 		   try
+				 		   {
+				 		     Class.forName("com.mysql.jdbc.Driver");
+				 		     Connection com= DriverManager.getConnection("jdbc:mysql://localhost:3306/stud_bio","root", "root");
+				 		     Statement stmt=com.createStatement();
+				 		     String search=("select * from stud_info where erp ='"+bn+"' OR stud_name='"+an+"'");
+				 		    ResultSet rs=stmt.executeQuery(search);
+				 		  
+				 		  	  
+				 		    while(rs.next())
+				 		    {
+				 		    		n1=rs.getInt(1);
+				 		    		n2=rs.getString(2);
+				 		    		n3=rs.getString(3);
+				 		    		n4=rs.getString(4);
+				 		    		n5=rs.getString(5);
+				 		    		n6=rs.getString(6);
+				 		    		n7=rs.getString(7);
+				 		    		n8=rs.getString(8);
+				 		    		n9=rs.getString(9);
+				 		    		n10=rs.getString(10);
+				 		    		n11=rs.getString(11);
+				 		    		n12=rs.getString(12);
+				 		    		n13=rs.getString(13);
+				 		    		n14=rs.getString(14);
+				 		    		n15=rs.getString(15);
+				 		         model.addRow(new Object[]{n1,n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12,n13,n14,n15})   
+				 		    	}   	
+				 		     com.close();
+				 		    }catch(Exception e1)
+				 		    {
+				 		        e1.printStackTrace();		    
+				 		    }
+				 	   }  	
+				 	}
+				 });
+				
+			} catch (Exception p) {
+				// TODO: handle exception
+			}
+		
+		panel_1.add(table.getTableHeader(),BorderLayout.NORTH);
+		JLabel lblNewLabel_8 = new JLabel("Search Student");
+		lblNewLabel_8.setFont(new Font("Tahoma", Font.BOLD, 28));
+		lblNewLabel_8.setBounds(556, 11, 230, 39);
+		panel_1.add(lblNewLabel_8);
+		
+		JLabel lblBookName_2 = new JLabel("ERP NO :");
+		lblBookName_2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblBookName_2.setBounds(254, 96, 146, 30);
+		panel_1.add(lblBookName_2);
+		
+		textField_14 = new JTextField();
+		textField_14.setBounds(384, 98, 351, 30);
+		panel_1.add(textField_14);
+		textField_14.setColumns(10);
+		
+		JLabel lblAuthorName = new JLabel("Student Name :");
+		lblAuthorName.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblAuthorName.setBounds(254, 158, 113, 24);
+		panel_1.add(lblAuthorName);
+		
+		textField_15 = new JTextField();
+		textField_15.setBounds(384, 152, 351, 30);
+		panel_1.add(textField_15);
+		textField_15.setColumns(10);
+		
+		 button_5 = new Button("LOG OUT");
+		button_5.setFont(new Font("Dialog", Font.BOLD, 14));
+		button_5.setForeground(SystemColor.text);
+		button_5.setBackground(new Color(51, 204, 255));
+		button_5.setBounds(1258, 0, 86, 35);
+		contentPane.add(button_5);
+		button_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				
+			  if(e.getSource()==button_5)
+			  {	  
+				  Login_1.main(null);
+				  setVisible(false);
+			  }
+			}
+		});
+	}
+	}
